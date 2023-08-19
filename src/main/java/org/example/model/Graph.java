@@ -74,9 +74,15 @@ public class Graph {
     }
 
     // Only those which have a name with the next letter OR the same
-    // TODO If the current street name has multiple consecutive letters, then we should check the next ones (i.e. if Rue Blabla Coucou, check "D" as well as "C")
+    // If the current street name has multiple consecutive letters, then we should check the next ones (i.e. if Rue Blabla Coucou, check "D" as well as "C")
     private boolean neighborCanBeVisited(StreetName currentStreetName, Vertex neighbor, char currentLetter, char previousLetter) {
-        return currentStreetName.isBeforeInAlphabet(new StreetName(neighbor.getLabel()), currentLetter)
-                || currentStreetName.isBeforeInAlphabet(new StreetName(neighbor.getLabel()), previousLetter);
+        List<Character> consecutiveLettersInCurrentName = currentStreetName.nextConsecutiveLettersInName(currentLetter);
+        consecutiveLettersInCurrentName.add(currentLetter);
+        for (Character letter: consecutiveLettersInCurrentName) {
+            if (currentStreetName.isBeforeInAlphabet(new StreetName(neighbor.getLabel()), letter)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
