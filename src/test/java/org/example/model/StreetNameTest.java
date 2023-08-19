@@ -48,4 +48,10 @@ class StreetNameTest {
         assertFalse(street.isBeforeInAlphabet(other, 's'));
     }
 
+    @Test
+    void consecutiveLettersInName() {
+        var street = new StreetName("Rue Aloha Bonjour Coucou");
+        assertEquals(List.of('b', 'c'), street.nextConsecutiveLettersInName('a'));
+    }
+
 }

@@ -1,5 +1,6 @@
 package org.example.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -12,7 +13,9 @@ public class StreetName {
             "Pont",
             //"Allée",
             "Promenade",
-            "Accès", "Impasse", "Cité");
+            "Accès",
+            //"Cité"
+            "Impasse");
 
     private final String fullName;
 
@@ -58,5 +61,28 @@ public class StreetName {
         return getCleanedNames().stream()
                 .filter(s -> s.toLowerCase().startsWith(String.valueOf(letter)))
                 .anyMatch(s -> areNextInAlphabet(other, s));
+    }
+
+    /**
+     * Returns list of next consecutive letters present in the name for a given letter
+     * i.e. Rue Alexis Beauregard Canard will return 'b','c' if given letter is 'a'
+     *
+     * **/
+
+    public List<Character> nextConsecutiveLettersInName(char startLetter) {
+        boolean stop = true;
+        List<Character> consecutiveLettersInName = new ArrayList<>();
+        char currentLetter = startLetter;
+        while(stop) {
+            final char nextLetter = Alphabet.letters.get(Alphabet.letters.indexOf(currentLetter) +1);
+            if (getCleanedNames().stream().map(String::toLowerCase).anyMatch(s -> s.startsWith(String.valueOf(nextLetter)))) {
+                consecutiveLettersInName.add(nextLetter);
+                currentLetter = nextLetter;
+            } else {
+                stop = false;
+            }
+        }
+
+        return consecutiveLettersInName;
     }
 }
