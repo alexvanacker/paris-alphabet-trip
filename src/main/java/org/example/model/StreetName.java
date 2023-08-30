@@ -74,7 +74,7 @@ public class StreetName {
         List<Character> consecutiveLettersInName = new ArrayList<>();
         char currentLetter = startLetter;
         while(stop) {
-            final char nextLetter = Alphabet.letters.get(Alphabet.letters.indexOf(currentLetter) +1);
+            final char nextLetter = Alphabet.letters.get(Math.floorMod(Alphabet.letters.indexOf(currentLetter) +1, 26));
             if (getCleanedNames().stream().map(String::toLowerCase).anyMatch(s -> s.startsWith(String.valueOf(nextLetter)))) {
                 consecutiveLettersInName.add(nextLetter);
                 currentLetter = nextLetter;
