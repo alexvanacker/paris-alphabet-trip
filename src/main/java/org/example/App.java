@@ -13,7 +13,9 @@ public class App
         Graph graph = reader.readData();
 
         // Find paths
-        List<Vertex> longest = graph.getLongestPath("a");
-        System.out.println("longest = " + longest);
+        String letter = "a";
+        List<List<Vertex>> longests = graph.getLongestPath(letter);
+        System.out.printf("Longest paths for letter %s, with max size %d%n", letter, longests.get(0).size());
+        longests.forEach(System.out::println);
     }
 }
