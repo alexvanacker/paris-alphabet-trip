@@ -10,12 +10,13 @@ public class StreetName {
 
     private static final Set<String> useless = Set.of("Rue", "Avenue", "de", "du", "des", "Boulevard", "d'", "la",
             "aux", "au", "Place", "et", "en", "l'", "le", "les", "La",
-            "Pont",
+            //"Pont",
             //"Allée",
-            "Promenade",
+            //"Promenade",
             "Accès",
             //"Cité"
-            "Impasse");
+            "Impasse",
+            "Escalier");
 
     private final String fullName;
 
