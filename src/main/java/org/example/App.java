@@ -9,12 +9,18 @@ import java.util.List;
 public class App 
 {
     public static void main( String[] args ) throws IOException {
-        DataReader reader = new DataReader();
-        Graph graph = reader.readData();
+        final DataReader reader = new DataReader();
+        final Graph graph = reader.readData();
 
         // Find paths
-        String letter = "a";
-        List<List<Vertex>> longests = graph.getLongestPath(letter);
+        final String letter = "t";
+        final int minSize = 0;
+        final List<List<Vertex>> longests;
+        if (minSize > 0) {
+            longests = graph.getPaths(letter, minSize);
+        } else {
+            longests = graph.getLongestPath(letter);
+        }
         System.out.printf("Longest paths for letter %s, with max size %d%n", letter, longests.get(0).size());
         longests.forEach(System.out::println);
     }

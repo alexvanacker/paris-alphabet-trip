@@ -36,6 +36,18 @@ public class Graph {
                 .collect(Collectors.toList());
     }
 
+    public List<List<Vertex>> getPaths(String letter, int minSize) {
+        List<List<Vertex>> longestPaths = new ArrayList<>();
+        for(Vertex v: getStarts(letter)) {
+            List<Vertex> longestForStart = getLongestPathFromVertex(v, letter.charAt(0));
+            if (longestForStart.size() >= minSize) {
+                longestPaths.add(longestForStart);
+            }
+            System.out.println(" ============================= ");
+        }
+        return longestPaths;
+    }
+
     public List<List<Vertex>> getLongestPath(String letter) {
         List<List<Vertex>> longests = new ArrayList<>();
         int longestSize = 0;
