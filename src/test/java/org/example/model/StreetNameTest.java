@@ -31,7 +31,7 @@ class StreetNameTest {
     @Test
     void withDash() {
         var street = new StreetName("Allée Blaise-Cendrars");
-        assertEquals(List.of("Blaise", "Cendrars"), street.getCleanedNames());
+        assertEquals(List.of("Allée", "Blaise", "Cendrars"), street.getCleanedNames());
     }
 
     @Test
